@@ -160,9 +160,12 @@ print("RF Acc: {}".format(rf_best_acc))
 print("RF Score: {}".format(rf_best_model.score(X_train, y_train)))
 print("RF Confusion matrix:\n {}".format(metrics.confusion_matrix(y_test, y_pred)))
 models.append((rf_best_model,acc))
-
 pickle.dump(rf_best_model, open(os.path.join(CHECKPOINTS_DIR, "iris_rf_best.pkl"), 'wb+'))
 
+"""
+Both models confirms that "setosa" class is the easier to classify. The next step is to store the best model 
+to be used later in production.
+"""
 models.sort(key=lambda tup: tup[1])
 pickle.dump(models[0][0], open(os.path.join(CHECKPOINTS_DIR, "iris_best.pkl"), 'wb+'))
 
